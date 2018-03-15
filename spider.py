@@ -187,8 +187,8 @@ def get_all_time():
 	while True:
 		tryPress()
 		time.sleep(3)
-		AutoPlay()
-		time.sleep(3)
+		T1=1
+		T2=2
 		try:
 			mouse = wait.until(EC.presence_of_element_located((By.CSS_SELECTOR, "#vjs_mediaplayer > div.videoArea.container")))
 			ActionChains(browser).move_to_element(mouse).perform()
@@ -196,10 +196,13 @@ def get_all_time():
 			tt1 = WebDriverWait(browser, 1).until(EC.presence_of_element_located((By.XPATH, "//*[@id=\"vjs_mediaplayer\"]/div[10]/div[4]/span[2]")))
 			T1 = tt1.text
 			T2 = tt2.text
+			if T1 == T2:
+				return 0
 		except:
 			pass
-		if T1 == T2:
-			return 0
+		time.sleep(3)
+		AutoPlay()
+		time.sleep(10)
 		print('本次视频时长：', T1)
 		print('已观看时间',T2)
 		
