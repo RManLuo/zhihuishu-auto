@@ -147,10 +147,10 @@ def into_study_page(num):
 						next_page.click()
 					except:
 						raise Exception('no next vidoe')
-					time.sleep(5)
+					time.sleep(10)
 					audiooff()
 					
-					time.sleep(5)
+					time.sleep(10)
 					speed()
 					
 					
