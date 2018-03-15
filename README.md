@@ -7,10 +7,12 @@ pip install selenium
 python3
 ## 使用
 
-1、修改config.py的内容
+1.修改config.py的内容
+```
   username = ''#手机号
   password = ''#密码
   total= #总共的课程数
   Nowcouse=#现在学习的课程，从左往右数，从1开始。
-2、python spider.py
+```
+2.python spider.py
 
