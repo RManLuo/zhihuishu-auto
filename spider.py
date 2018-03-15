@@ -8,7 +8,6 @@ from selenium.common.exceptions import TimeoutException
 from selenium.webdriver import ActionChains
 from config import *
 import time
-
 browser = webdriver.Chrome()
 wait = WebDriverWait(browser, 50)
 def IntoNextCourse():
@@ -134,17 +133,19 @@ def into_study_page(num):
 					print('进入下一节学习成功')
 					#video_look(all_time)
 					#check()
+					time.sleep(5)
 					try:
 						next_page = browser.find_element_by_css_selector("body > div.study_page > div.main_left > div > div.next_lesson > div > a")
-						
+						next_page.click()
 					except:
 						raise Exception('no next vidoe')
-					
-					next_page.click()
-					time.sleep(10)
-					speed()
 					time.sleep(5)
 					audiooff()
+					
+					time.sleep(5)
+					speed()
+					
+					
 					print('进入下一节的学习......')
 					time.sleep(10)
 					all_time = get_all_time()
