@@ -10,6 +10,14 @@ from config import *
 import time
 browser = webdriver.Chrome()
 wait = WebDriverWait(browser, 50)
+def AutoPlay():
+	try:
+		mouse = wait.until(EC.presence_of_element_located((By.CSS_SELECTOR, "#vjs_mediaplayer > div.videoArea.container")))
+		ActionChains(browser).move_to_element(mouse).perform()
+		browser.find_element_by_css_selector("#playButton > div").click()
+	except:
+		print("no need to start video")
+		
 def IntoNextCourse():
 	global Nowcouse
 	Nowcouse=Nowcouse+1
@@ -178,6 +186,8 @@ def into_study_page(num):
 def get_all_time():
 	while True:
 		tryPress()
+		time.sleep(3)
+		AutoPlay()
 		time.sleep(3)
 		try:
 			mouse = wait.until(EC.presence_of_element_located((By.CSS_SELECTOR, "#vjs_mediaplayer > div.videoArea.container")))
