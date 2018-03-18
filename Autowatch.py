@@ -7,6 +7,7 @@ from selenium.webdriver.support import expected_conditions as EC
 from selenium.common.exceptions import TimeoutException
 from selenium.webdriver import ActionChains
 from config import *
+from datetime import datetime
 import time
 browser = webdriver.Chrome()
 wait = WebDriverWait(browser, 50)
@@ -184,6 +185,13 @@ def into_study_page(num):
 
 
 def get_all_time():
+	start = datetime.now()
+	mouse = wait.until(EC.presence_of_element_located((By.CSS_SELECTOR, "#vjs_mediaplayer > div.videoArea.container")))
+	ActionChains(browser).move_to_element(mouse).perform()
+	tt1 = WebDriverWait(browser, 1).until(EC.presence_of_element_located((By.XPATH, "//*[@id=\"vjs_mediaplayer\"]/div[10]/div[4]/span[2]")))
+	T1 = tt1.text
+	T_all= int((int(T1[3:5])*60+int(T1[6:])))+15
+	
 	while True:
 		tryPress()
 		time.sleep(3)
@@ -198,8 +206,12 @@ def get_all_time():
 			T2 = tt2.text
 			if T1 == T2:
 				return 0
+			
 		except:
 			pass
+		end = datetime.now()
+		if (end - start).seconds > T_all:
+			return 0
 		time.sleep(3)
 		AutoPlay()
 		time.sleep(10)
@@ -207,7 +219,7 @@ def get_all_time():
 		print('已观看时间',T2)
 		
 		time.sleep(20)
-		#all_time = int((int(T1[3:5])*60+int(T1[6:])))
+		
 	#return all_time
 
 def main():
