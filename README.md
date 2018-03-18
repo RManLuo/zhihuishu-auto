@@ -14,5 +14,5 @@
   total= #总共的课程数
   Nowcouse=#现在学习的课程，从左往右数，从1开始。
 ```
-2.python spider.py
+2.python Autowatch.py
 
